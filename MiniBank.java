@@ -9,7 +9,28 @@ public class MiniBank{
     {
         Scanner sc= new Scanner(System.in);
 
+        account[] accounts = {
+            new account("Hetvi" , 5000),
+            new account("satyam" , 3000),
+            new account("Dimpal")
+        };
 
+        accounts[0].deposite(20000);
+        accounts[1].deposite(50000);
+        accounts[2].deposite(7000);
+
+        accounts[0].Withdraw(5000);
+        accounts[1].Withdraw(800);
+
+        System.out.println("----- Account Details -----");
+
+        for (account acc : accounts) {
+            System.out.println("Account Number : " + acc.getAccountNumber());
+            System.out.println("Owner Name     : " + acc.getOwnerName());
+            System.out.println("Balance        : " + acc.getBalance());
+            System.out.println("Active         : " + acc.isActive());
+            System.out.println();
+        }
         String choice="null";
         while(!choice.equals("EXIT"))
         {
