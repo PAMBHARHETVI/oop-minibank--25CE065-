@@ -9,6 +9,8 @@ public class MiniBank{
     {
         Scanner sc= new Scanner(System.in);
 
+        BankInfo bank = new BankInfo("Minibank" , "CHARUSAT Branch");
+
         account[] accounts = {
             new account("Hetvi" , 5000),
             new account("satyam" , 3000),
@@ -31,7 +33,9 @@ public class MiniBank{
             System.out.println("Active         : " + acc.isActive());
             System.out.println();
         }
+
         String choice="null";
+
         while(!choice.equals("EXIT"))
         {
             
@@ -40,9 +44,11 @@ public class MiniBank{
             System.out.println("3. Withdraw");
             System.out.println("4. Transfer");
             System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println();
 
+            System.out.print("Enter your choice: ");
             choice = sc.next().toUpperCase();
+            
             MenuOption menuoption=MenuOption.valueOf(choice);
 
             switch(menuoption){
