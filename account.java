@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-class account {
+abstract class account {
     
     private final String accountNumber;
     private String ownerName;
@@ -39,6 +39,11 @@ class account {
 
         return false;
     }
+
+    public abstract double interestRate();
+
+    public abstract boolean canWithdraw(long amount);
+
 
     public String getAccountNumber() {
         return accountNumber;
