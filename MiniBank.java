@@ -17,9 +17,9 @@ public class MiniBank{
         System.out.println("================================");
 
         account[] accounts = {
-            new account("Hetvi" , 5000),
-            new account("satyam" , 3000),
-            new account("Dimpal")
+            new SavingsAccount("Hetvi" ,10000, 5000),
+            new CurrentAccount("satyam" , 5000,3000),
+            new FixedDepositAccount("Dimpal",20000)
         };
 
         accounts[0].deposit(20000);
@@ -34,6 +34,10 @@ public class MiniBank{
         for (account acc : accounts) {
            
             System.out.println(acc);
+
+            System.out.println("InterrestRate() : " + acc.interestRate() + "%");
+
+            System.out.println();
         }
 
         System.out.println("\n---- equals() Testing ----");
