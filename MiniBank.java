@@ -40,10 +40,31 @@ public class MiniBank{
             System.out.println();
         }
 
+        System.out.println("---- Withdrawal Testing ---");
+
+        boolean savingResult = accounts[0].Withdraw(5000);
+
+        System.out.println("Saving Account withdrawal : " + savingResult);
+
+        boolean currentResult = accounts[1].Withdraw(800);
+
+        System.out.println("Current Account withdraw : " + currentResult);
+
+        boolean FixedDepositResult = accounts[2].Withdraw(1000);
+
+        System.out.println("Fixed Deposite withdrawal : " + FixedDepositResult);
+
+        System.out.println("\n---- Updated Account Details ----");
+
+        for(account acc : accounts)
+        {
+            System.out.println(acc);
+        }
+
         System.out.println("\n---- equals() Testing ----");
 
-        account a1 = new account("Riya" , 4000);
-        account a2 = new account("Riya" , 4000);
+        account a1 = new SavingsAccount("Riya" , 4000,1000);
+        account a2 = new SavingsAccount("Riya" , 4000,1000);
 
         System.out.println("Account 1 :" + a1);
         System.out.println("Account 2 :" + a2);
@@ -85,11 +106,24 @@ public class MiniBank{
 
         System.out.println("\n----- instanceof Testing -----");
 
-        if (a1 instanceof account) {
+        for(account acc : accounts)
+        {
+            if(acc instanceof SavingsAccount)
+            {
+                System.out.println(acc.getOwnerName() + " is a Savings Account");
+            }
 
-            System.out.println("a1 is an Account");
+            if(acc instanceof CurrentAccount)
+            {
+                System.out.println(acc.getOwnerName() + " is a Current Account");
+            }
+
+            if(acc instanceof FixedDepositAccount)
+            {
+                System.out.println(acc.getOwnerName() + " is a Fixed Deposite Account");
+            }
         }
-
+        
         if (customer instanceof Customer) {
 
             System.out.println("customer is a Customer");
