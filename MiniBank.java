@@ -1,13 +1,19 @@
 import java.util.Scanner;
 
-record BankInfo(String name, String branch){}
-
-enum MenuOption{OPEN_ACCOUNT, DEPOSITE, WITHDRAW, TRANSFER, EXIT}
-
 public class MiniBank{
+
+    record BankInfo(String name, String branch){}
+
+    record Command(TransactionType type, String accountNumber, long amount) {}
+
+    enum MenuOption{OPEN_ACCOUNT, DEPOSITE, WITHDRAW, TRANSFER, EXIT}
+
+    enum TransactionType {DEPOSIT, WITHDRAW, TRANSFER }
     public static void main(String args[])
     {
         Scanner sc= new Scanner(System.in);
+
+        //Bank Information (Practical 1)
 
         BankInfo bank = new BankInfo("Minibank" , "CHARUSAT Branch");
 
@@ -16,11 +22,38 @@ public class MiniBank{
         System.out.println("          " + bank.branch());
         System.out.println("================================");
 
+        //Customer and Account Testing (Practical 2)
+
+        Customer customer1 = new Customer(
+                "Hetvi",
+                "hetvi@gmail.com",
+                "9876543210"
+        );
+
+        Customer.Address address = new Customer.Address(
+                "CHARUSAT Road",
+                "Anand",
+                "388421"
+        );
+
+        customer1.setAddress(address);
+
+        System.out.println("\nCustomer Information:");
+        System.out.println("Customer ID : " + customer1.getCustomerId());
+        System.out.println("Name        : " + customer1.getName());
+        System.out.println("Email       : " + customer1.getEmail());
+        System.out.println("Mobile      : " + customer1.getMobile());
+        System.out.println("City        : " + customer1.getAddress().getCity());
+        
+        // Account Testing (Practical 3)
+
         account[] accounts = {
             new SavingsAccount("Hetvi" ,10000, 5000),
-            new CurrentAccount("satyam" , 5000,3000),
+            new CurrentAccount("Satyam" , 5000,3000),
             new FixedDepositAccount("Dimpal",20000)
         };
+
+        //deposit and withdraw
 
         accounts[0].deposit(20000);
         accounts[1].deposit(50000);
@@ -82,13 +115,13 @@ public class MiniBank{
                 "9876543210"
         );
 
-        Customer.Address address = new Customer.Address(
+        Customer.Address customerAddress = new Customer.Address(
                 "123 Main Road",
                 "Vadodara",
                 "390001"
         );
 
-        customer.setAddress(address);
+        customer.setAddress(customerAddress);
 
         System.out.println("Customer ID : " + customer.getCustomerId());
         System.out.println("Name        : " + customer.getName());
@@ -128,6 +161,71 @@ public class MiniBank{
 
             System.out.println("customer is a Customer");
         }
+
+        //Validator Testing
+
+        System.out.println("\nValidator Tests:");
+
+        System.out.println(
+                "Valid Mobile: "
+                        + Validator.isValidMobile("9876543210")
+        );
+
+        System.out.println(
+                "Invalid Mobile: "
+                        + Validator.isValidMobile("12345")
+        );
+
+        System.out.println(
+                "Valid Email: "
+                        + Validator.isValidEmail("hetvi@gmail.com")
+        );
+
+        System.out.println(
+                "Invalid Email: "
+                        + Validator.isValidEmail("hetvi@")
+        );
+
+        System.out.println(
+                "Valid PAN: "
+                        + Validator.isValidPan("ABCDE1234F")
+        );
+
+        System.out.println(
+                "Invalid PAN: "
+                        + Validator.isValidPan("ABC123")
+        );
+
+        System.out.println(
+                "Valid IFSC: "
+                        + Validator.isValidIfsc("SBIN0001234")
+        );
+
+        System.out.println(
+                "Invalid IFSC: "
+                        + Validator.isValidIfsc("SBIN123")
+        );
+
+        // CommandParser Testing
+
+        System.out.println("\nCommand Parser Test:");
+
+        String input = "DEPOSIT AC0001 500";
+
+        Command command = CommandParser.parse(input);
+
+        System.out.println("Command Type    : " + command.type());
+        System.out.println("Account Number  : " + command.accountNumber());
+        System.out.println("Amount          : " + command.amount());
+
+
+        // StatementFormatter Testing
+
+        System.out.println("\nAccount Statement:");
+
+        System.out.println(
+                StatementFormatter.buildStatement(accounts[0])
+        );
 
         String choice="null";
 

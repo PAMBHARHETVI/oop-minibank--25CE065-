@@ -51,9 +51,9 @@ class Customer implements Cloneable
 
     public static class Address{
 
-        String line;
-        String city;
-        String pincode;
+        private String line;
+        private String city;
+        private String pincode;
 
         public Address(String line, String city, String pincode)
         {

@@ -32,7 +32,7 @@ abstract class account {
     }
 
     public boolean Withdraw(long amount) {
-        if (amount > 0 && amount <= balance) {
+        if (amount > 0 && canWithdraw(amount)) {
             balance -= amount;
             return true;
         }
