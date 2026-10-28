@@ -1,0 +1,5 @@
+package model;
+
+public enum MenuOption {
+    OPEN_ACCOUNT, DEPOSIT, WITHDRAW, TRANSFER, VIEW_ACCOUNTS, STATEMENT, SAVE_AND_REPORT, EXIT
+}

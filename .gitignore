@@ -1,1 +1,7 @@
+out/
+MiniBank.jar
+manifest.mf
+data/
+logs/
+reports/
 *.class
